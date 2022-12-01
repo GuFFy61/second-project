@@ -57,7 +57,7 @@ public class GameHelper {
                         success = false;
                     }
                 } else {
-                    //System.out.print("Используется " + location);
+                    // System.out.println("Используется " + location);
                     success = false;
                 }
             }
@@ -66,7 +66,7 @@ public class GameHelper {
         int x = 0;                                            // Переводим местоположение в символьные координаты
         int row = 0;
         int column = 0;
-        //System.out.println("\n");
+        // System.out.println("\n");
         while (x < comSize) {
             grid[coords[x]] = 1;                              // Помечаем ячейки на главной сетке как "использованные"
             row = (int) (coords[x] / gridLength);             // Получаем значение строки
@@ -75,7 +75,7 @@ public class GameHelper {
 
             alphaCells.add(temp.concat(Integer.toString(row)));
             x++;
-            /* System.out.println("  coord"+x+" = " + alphaCells.get(x-1));   -->  Это выражение может показать,
+           /* System.out.println("  coord"+x+" = " + alphaCells.get(x-1));   -->  Это выражение может показать,
                                                                                    где именно находится "сайт" */
         }
         // System.out.println("\n");

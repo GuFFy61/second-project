@@ -2,7 +2,7 @@ import java.util.*;
 public class DotComBust {
     // Объявляем и инициализируем переменные, которые нам понадобятся
    private GameHelper helper = new GameHelper();
-   private ArrayList<DotCom> dotComList = new ArrayList<DotCom>();
+   private ArrayList<DotCom> dotComsList = new ArrayList<DotCom>();
    private int numOfGuesses = 0;
 
    private void setUpGame() {
@@ -11,18 +11,18 @@ public class DotComBust {
      one.setName("Pets.com");
      DotCom two = new DotCom();
      two.setName("eToys.com");
-     Dotcom three = new DotCom();
+     DotCom three = new DotCom();
      three.setName("Go2.com");
-     dotComList.add(one);
-     dotComList.add(two);
-     dotComList.add(three);
+     dotComsList.add(one);
+     dotComsList.add(two);
+     dotComsList.add(three);
 
        // Выводим краткие инструкции для пользователя
-       System.out.println("Ваша цель - потопить три \"сайта\".");
+       System.out.println("Ваша цель - потопить три \"сайта\":");
        System.out.println("Pets.com, eToys.com, Go2.com");
        System.out.println("Попытайтесь потопить их за минимальное количество ходов");
 
-       for (DotComm dotComToSet: dotComList) {                      // Повторяем с каждым объектом DotCom в списке
+       for (DotCom dotComToSet: dotComsList) {                      // Повторяем с каждым объектом DotCom в списке
            ArrayList<String> newLocation = helper.placeDotCom(3);   // Запрашиваем у вспомогательного объекта адрес "сайта"
            dotComToSet.setLocationCells(newLocation);               /* Вызываем сеттер из объекта DotCom, чтобы
                                                                        передать ему местоположение, которое только что
@@ -31,7 +31,7 @@ public class DotComBust {
    }
 
    private void startPlaying() {
-   while(!dotComList.isEmpty()) {                                    // До тех пор, пока список не станет пустым
+   while(!dotComsList.isEmpty()) {                                    // До тех пор, пока список не станет пустым
        String userGuess = helper.getUserInput("Сделайте ход");       // Получем ввод от пользоваттеля
        checkUserGuess(userGuess);
    }
@@ -40,18 +40,19 @@ public class DotComBust {
 
    private void checkUserGuess(String userGuess) {
    numOfGuesses++;
-   String result = "мимо";
+   String result = "Мимо";
 
-   for (DotCom dotComToTest: dotComList) {
+   for (DotCom dotComToTest: dotComsList) {
        result = dotComToTest.checkYourself(userGuess);                // Просим DotCom проверить ход пользователя
        if (result.equals("Попал")) {
            break;
        }
        if (result.equals("Потопил")) {
-           dotComList.remove(dotComToTest);
+           dotComsList.remove(dotComToTest);
            break;
        }
    }
+       System.out.println(result);
 }
 
    private void finishGame() {
